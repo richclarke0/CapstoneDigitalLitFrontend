@@ -1,7 +1,56 @@
-
+import { useEffect, useState } from "react"
 import React from 'react';
-const App = () => ( <div>
-    <h1>App</h1>
-  </div>
-);
+import {useNavigate} from "react-router-dom"
+import axios from "axios"
+
+const App = (props) => {
+
+  const [loginState, setLoginState] = useState({
+    email: '',
+    password: '',
+  })
+
+  const [errorState, setErrorState] = useState(null)
+
+  const handleChange = (event) => {
+    setLoginState((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+  }))
+  }
+  const navigate = useNavigate()
+  
+  const handleSubmit = (event) => {
+		event.preventDefault();
+		axios
+			.post('https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/login', loginState)
+			.then((response) => {
+        console.log("res/token", response.data)
+				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
+
+        navigate('/')
+			})
+			.catch((error) => {				
+				setErrorState({
+					errors: error.response.data,
+					loading: false
+				});
+			});
+	};
+
+
+  const {email,password} = loginState;
+
+  return (
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input type="email" name="email" value={email} onChange={handleChange}/><br />
+        <input type="password" name="password" value={password} onChange={handleChange}/><br />
+        <input type="submit" value="submit"/>
+      </form>
+    </div>
+  )
+}
+
 export default App;
