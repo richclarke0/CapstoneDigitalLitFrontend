@@ -7,11 +7,11 @@ import { Grid, Cell, Menu, MenuItem } from "react-foundation";
 const Navigation = () => (
  
   <Menu>
-    <MenuItem><Link to={ROUTES.SIGN_IN}>Sign In</Link></MenuItem>
-    <MenuItem><Link to={ROUTES.LANDING}>Landing</Link></MenuItem>
-    <MenuItem><Link to={ROUTES.HOME}>Home</Link></MenuItem>
-    <MenuItem><Link to={ROUTES.ACCOUNT}>Account</Link></MenuItem>
-    <MenuItem><Link to={ROUTES.ADMIN}>Admin</Link></MenuItem>
+    {/* <MenuItem><Link to={ROUTES.SIGN_IN}>Sign In</Link></MenuItem> */}
+    <MenuItem><Link to={ROUTES.LANDING}>Home</Link></MenuItem>
+    <MenuItem><Link to={ROUTES.ABOUT}>About</Link></MenuItem>
+    {/* <MenuItem><Link to={ROUTES.ACCOUNT}>Account</Link></MenuItem> */}
+    {/* <MenuItem><Link to={ROUTES.ADMIN}>Admin</Link></MenuItem> */}
   </Menu>
 );
 
