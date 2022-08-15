@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Navigation from "../Navigation"
-import LandingPage from '../Landing';
+import QuestionsHomePage from '../QuestionsHomePage';
 // import SignUpPage from '../SignUp';
 // import SignInPage from '../SignIn';
 // import PasswordForgetPage from '../PasswordForget';
@@ -18,14 +18,8 @@ const App = () => (
       <Navigation />
       <hr />
       <Routes>
-        {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> old ones */}
-        <Route exact path={ROUTES.LANDING} element={<LandingPage/>} />
-        <Route path={ROUTES.SIGN_UP} element={<SignUpPage />} />
-        <Route path={ROUTES.SIGN_IN} element={<SignInPage/>} />
-        <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForgetPage/>} />
+        <Route exact path={ROUTES.QUESTIONS_HOME} element={<QuestionsHomePage/>} />
         <Route path={ROUTES.ABOUT} element={<AboutPage/>} />
-        <Route path={ROUTES.ACCOUNT} element={<AccountPage/>} />
-        <Route path={ROUTES.ADMIN} element={<AdminPage/>} />
       </Routes>
     </div>
   </Router>
