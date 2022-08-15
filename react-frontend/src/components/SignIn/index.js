@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import React from 'react';
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
+import {Button} from "react-foundation"
 
 const App = (props) => {
 
@@ -23,7 +24,7 @@ const App = (props) => {
   const handleSubmit = (event) => {
 		event.preventDefault();
 		axios
-			.post('https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/login', loginState)
+			.post('/login', loginState, )
 			.then((response) => {
         console.log("res/token", response.data)
 				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
@@ -47,7 +48,7 @@ const App = (props) => {
       <form onSubmit={handleSubmit}>
         <input type="email" name="email" value={email} onChange={handleChange}/><br />
         <input type="password" name="password" value={password} onChange={handleChange}/><br />
-        <input type="submit" value="submit"/>
+        <Button type="submit" value="submit">Submit</Button>
       </form>
     </div>
   )
