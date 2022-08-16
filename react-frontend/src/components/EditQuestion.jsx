@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { MDBInput, MDBBtn, MDBContainer } from "mdb-react-ui-kit"
+import axios from "axios"
 
 export default function EditQuestionForm(props) {
     const navigate = useNavigate()
@@ -19,8 +20,7 @@ export default function EditQuestionForm(props) {
         answerChoicesC: question["answerChoices"]["c"],
         answerChoicesD: question["answerChoices"]["d"],
     })
-
-    console.log(editForm)
+  
     const handleChange = (event) => {
         console.log(event.target.name)
         setEditForm((prevState) => ({
@@ -31,13 +31,37 @@ export default function EditQuestionForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         // props.updateQuestion(editForm, question.questionId)
-        navigate("/", { replace: true })
+        updateQuestion()
+        navigate(`/question/edit/${question.questionId}`, { replace: true })
     }
 
     const removeQuestion = () => {
-        // props.deleteQuestion(question.questionId);
+        axios
+        .delete(`/question/${question.questionId}`)
+        .then(() => {
+            window.location.reload();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
         navigate("/")
     };
+
+    const updateQuestion = () => {
+        let options = {
+            url: `/question/${question.questionId}`,
+            method: 'put',
+            data: editForm
+        }
+        axios(options)
+        .then(() => {
+            //idk
+        })
+        .catch((error) => {
+            // this.setState({ open: true, errors: error.response.data });
+            console.log(error);
+        });
+    }
 
     return (
         <MDBContainer style={{ "maxWidth": "700px" }}>
