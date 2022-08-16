@@ -34,13 +34,13 @@ export default function Card(props) {
         if (!!question.img) {
             return <>
                 <div className="col-md-2">
-                    <MDBCardImage src='question.img' position='left' alt='...' className="img-thumbnail" />
+                    <MDBCardImage src={question.img} position='left' alt='...' className="img-thumbnail" />
                 </div>
                 <br />
             </>
         }
     }
-
+    
     return (
         <MDBCard>
             <MDBCardBody >
@@ -50,7 +50,9 @@ export default function Card(props) {
                 <MDBCardText>
                     <select onChange={selectChange} style={{ "backgroundColor": answerCheck }}>{mapAnswers()}</select>
                 </MDBCardText>
-                <MDBBtn >Button</MDBBtn>
+                <Link to={`/question/edit/${question.questionId}`}>
+                <MDBBtn >Edit</MDBBtn>
+            </Link>
             </MDBCardBody>
         </MDBCard>
     );
