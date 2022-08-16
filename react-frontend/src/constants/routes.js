@@ -1,7 +1,5 @@
-// export const SIGN_UP = '/signup';
-// export const SIGN_IN = '/signin';
-// export const ACCOUNT = '/account';
-// export const ADMIN = '/admin';
-// export const PASSWORD_FORGET = '/pw-forget';
 export const QUESTIONS_HOME = '/';
+export const QUESTIONS_EASY = '/easy';
+export const QUESTIONS_MEDIUM= '/medium';
+export const QUESTIONS_HARD = '/hard';
 export const ABOUT = '/about';
