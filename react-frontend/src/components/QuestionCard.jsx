@@ -27,7 +27,11 @@ export default function Card(props) {
         ))
     }
 
-    function renderImg() {
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function conditionalRenderImg() {
         if (!!question.img) {
             return <>
                 <div className="col-md-2">
@@ -41,8 +45,8 @@ export default function Card(props) {
     return (
         <MDBCard>
             <MDBCardBody >
-                <MDBCardHeader style={{ "padding": "2px" }}>Question Difficulty: {question.pool ? question.pool : "Unknown"}</MDBCardHeader>
-                {renderImg()}
+                <MDBCardHeader style={{ "padding": "2px" }}>Question Difficulty: {question.pool ? capitalizeFirstLetter(question.pool) : "Unknown"}</MDBCardHeader>
+                {conditionalRenderImg()}
                 <MDBCardTitle>{question.question}</MDBCardTitle>
                 <MDBCardText>
                     <select onChange={selectChange} style={{ "background-color": answerCheck }}>{mapAnswers()}</select>
