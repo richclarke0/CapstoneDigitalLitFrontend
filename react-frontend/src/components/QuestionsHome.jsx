@@ -23,11 +23,9 @@ const App = (props) => {
         </div>
       )
     } else {
-      return (
-        questions.map((entry, index) => {
-          console.log(entry.pool, props.pool, entry.pool === props.pool)
+          // console.log(entry.pool, props.pool, entry.pool === props.pool)
           return (
-            <div>
+            <div >
               <h1>{capitalizeFirstLetter(props.pool)} Questions</h1>
               {questions.map((entry, index) => {
                 if (entry.pool === props.pool) {
@@ -36,8 +34,6 @@ const App = (props) => {
               })}
             </div>
           )
-        })
-      )
     }
   }
 

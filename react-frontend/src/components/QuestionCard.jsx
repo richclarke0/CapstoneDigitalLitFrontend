@@ -26,7 +26,7 @@ export default function Card(props) {
 
     function mapAnswers() {
         return Object.entries(question.answerChoices).map(([k, v]) => (
-            <option value={k}>{v}</option>
+            <option key={k} value={k}>{v}</option>
         ))
     }
 

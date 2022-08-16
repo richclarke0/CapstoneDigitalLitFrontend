@@ -64,7 +64,8 @@ const App = () => {
 
           <Route path={ROUTES.QUESTION_EDIT}
             element={<EditQuestion
-              questions={questions} />}
+              questions={questions}
+              getQuestions={getQuestions} />}
           />
 
           <Route path={ROUTES.QUESTION_NEW}
@@ -72,7 +73,7 @@ const App = () => {
           />
 
           <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-          
+
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { MDBInput, MDBBtn, MDBContainer } from "mdb-react-ui-kit"
 import axios from "axios"
@@ -9,7 +9,7 @@ export default function EditQuestionForm(props) {
     const { id } = useParams()
     const questions = props.questions
     const question = questions.find((p) => p.questionId === id)
-
+    const [updateDeleteAnnouncer, setUpdateDeleteAnnouncer] = useState("")
     const [editForm, setEditForm] = useState({
         pool: question.pool,
         question: question.question,
@@ -20,7 +20,7 @@ export default function EditQuestionForm(props) {
         answerChoicesC: question["answerChoices"]["c"],
         answerChoicesD: question["answerChoices"]["d"],
     })
-  
+
     const handleChange = (event) => {
         console.log(event.target.name)
         setEditForm((prevState) => ({
@@ -36,14 +36,15 @@ export default function EditQuestionForm(props) {
 
     const removeQuestion = () => {
         axios
-        .delete(`/question/${question.questionId}`)
-        .then(() => {
-            window.location.reload();
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-        navigate("/")
+            .delete(`/question/${question.questionId}`)
+            .then((res) => {
+                res ? setUpdateDeleteAnnouncer("Question Deleted!") : setUpdateDeleteAnnouncer("Error")
+                // window.location.reload();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        setTimeout(() => { navigate("/") }, 3000)
     };
 
     const updateQuestion = () => {
@@ -53,35 +54,46 @@ export default function EditQuestionForm(props) {
             data: editForm
         }
         axios(options)
-        .then((response) => {
-            console.log(response)
-        })
-        .catch((error) => {
-            // this.setState({ open: true, errors: error.response.data });
-            console.log(error);
-        });
+            .then((response) => {
+                console.log(response)
+                setUpdateDeleteAnnouncer("Question Updated!")
+                setTimeout(function () {
+                    setUpdateDeleteAnnouncer("")
+                }, 4000)
+
+            })
+            .catch((error) => {
+                // this.setState({ open: true, errors: error.response.data });
+                console.log(error);
+            });
     }
 
+    // if (hardrefresh) {() => {props.getQuestions()}}
+    // useEffect(() => {
+    //     console.log("useEffect in edit")
+    //     props.getQuestions()
+    // }, [])
     return (
         <MDBContainer style={{ "maxWidth": "700px" }}>
             <form className='mb-5' onSubmit={handleSubmit}>
                 <span>
                     <label for="difficulty">Question Difficulty: </label>
-                    <select id="difficulty" style={{"margin":"1em"}} onChange={ handleChange } name="pool" label="Difficulty:">
+                    <select id="difficulty" style={{ "margin": "1em" }} onChange={handleChange} name="pool" label="Difficulty:">
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </span>
-                
-                <MDBInput wrapperClass='mb-4' name='question' label='Question:' type='text' value={editForm.question} onChange={ handleChange }/>
-                <MDBInput wrapperClass='mb-4' name='img' label='Image (optional):' type='text' value={editForm.img} onChange={ handleChange }/>
-                <MDBInput wrapperClass='mb-4' name='answerChoicesA' label='Answer Choice A:' type='text' value={editForm.answerChoicesA} onChange={ handleChange }/>
-                <MDBInput wrapperClass='mb-4' name='answerChoicesB' label='Answer Choice B:' type='text' value={editForm.answerChoicesB} onChange={ handleChange }/>
-                <MDBInput wrapperClass='mb-4' name='answerChoicesC' label='Answer Choice C:' type='text' value={editForm.answerChoicesC} onChange={ handleChange }/>
-                <MDBInput wrapperClass='mb-4' name='answerChoicesD' label='Answer Choice D:' type='text' value={editForm.answerChoicesD} onChange={ handleChange }/>
+
+                <MDBInput wrapperClass='mb-4' name='question' label='Question:' type='text' value={editForm.question} onChange={handleChange} />
+                <MDBInput wrapperClass='mb-4' name='img' label='Image (optional):' type='text' value={editForm.img} onChange={handleChange} />
+                <MDBInput wrapperClass='mb-4' name='answerChoicesA' label='Answer Choice A:' type='text' value={editForm.answerChoicesA} onChange={handleChange} />
+                <MDBInput wrapperClass='mb-4' name='answerChoicesB' label='Answer Choice B:' type='text' value={editForm.answerChoicesB} onChange={handleChange} />
+                <MDBInput wrapperClass='mb-4' name='answerChoicesC' label='Answer Choice C:' type='text' value={editForm.answerChoicesC} onChange={handleChange} />
+                <MDBInput wrapperClass='mb-4' name='answerChoicesD' label='Answer Choice D:' type='text' value={editForm.answerChoicesD} onChange={handleChange} />
+                <h4>{updateDeleteAnnouncer}</h4>
                 <label for="correct">Select the correct answer:</label>
-                <select id="correct" style={{"margin":"1em"}} onChange={ handleChange } name="correctAnswer" label="Correct Answer:">
+                <select id="correct" style={{ "margin": "1em" }} onChange={handleChange} name="correctAnswer" label="Correct Answer:">
                     <option value="a">A</option>
                     <option value="b">B</option>
                     <option value="c">C</option>
