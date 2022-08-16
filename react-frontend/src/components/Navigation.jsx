@@ -53,6 +53,15 @@ const Navigation = () => {
               </MDBNavbarItem>
 
               <MDBNavbarItem>
+                <MDBNavbarLink href='/easy'>Easy</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/medium'>Medium</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/hard'>Hard</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
                 <MDBNavbarLink href='/about'>About</MDBNavbarLink>
               </MDBNavbarItem>
 

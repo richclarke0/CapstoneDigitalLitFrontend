@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from "./Navigation"
 import QuestionsHome from './QuestionsHome';
 import AboutPage from './About';
+import EditQuestion from './EditQuestion';
 import { useState, useEffect } from "react"
 import axios from "axios"
 
@@ -28,14 +29,45 @@ const App = () => {
       })
   }
 
+  useEffect(() => {
+    console.log("useEffect in app")
+    getQuestions()
+  }, [])
+
   return (
   <Router>
     <div>
       <Navigation />
       {/* <hr /> */}
       <Routes>
-        <Route exact path={ROUTES.QUESTIONS_HOME} element={<QuestionsHome questions={questions} getQuestions={getQuestions} pool={"all"} />} />
-        {/* easy , medium hard also go here */}
+        <Route exact path={ROUTES.QUESTIONS_HOME} 
+        element={
+        <QuestionsHome questions={questions} getQuestions={getQuestions} pool={"all"} />
+        } />
+        <Route path={ROUTES.QUESTIONS_EASY} 
+        element={
+        <QuestionsHome questions={questions} getQuestions={getQuestions} pool={"easy"} />
+        } />
+        <Route path={ROUTES.QUESTIONS_MEDIUM} 
+        element={
+        <QuestionsHome questions={questions} getQuestions={getQuestions} pool={"medium"} />
+        } />
+        <Route path={ROUTES.QUESTIONS_HARD} 
+        element={
+        <QuestionsHome questions={questions} getQuestions={getQuestions} pool={"hard"} />
+        } />
+        <Route path={ROUTES.QUESTION_EDIT}
+                element={<EditQuestion 
+                // deleteQuestion={deleteQuestion} 
+                // updateQuestion={updateQuestion}
+                questions={questions}/>} 
+                />
+          <Route path={ROUTES.QUESTION_EDIT}
+                element={<EditQuestion 
+                // deleteQuestion={deleteQuestion} 
+                // updateQuestion={updateQuestion}
+                questions={questions}/>} 
+                />
         <Route path={ROUTES.ABOUT} element={<AboutPage/>} />
       </Routes>
     </div>

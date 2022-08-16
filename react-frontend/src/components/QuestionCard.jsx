@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom"
+
 import {
     MDBCard,
     MDBCardBody,
@@ -11,6 +13,7 @@ import {
 
 export default function Card(props) {
     let question = props.question
+    let capitalize = props.capitalize
 
     const [answerCheck, setAnswerCheck] = useState("")
 
@@ -27,10 +30,6 @@ export default function Card(props) {
         ))
     }
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     function conditionalRenderImg() {
         if (!!question.img) {
             return <>
@@ -45,13 +44,13 @@ export default function Card(props) {
     return (
         <MDBCard>
             <MDBCardBody >
-                <MDBCardHeader style={{ "padding": "2px" }}>Question Difficulty: {question.pool ? capitalizeFirstLetter(question.pool) : "Unknown"}</MDBCardHeader>
+                <MDBCardHeader style={{ "padding": "2px" }}>Question Difficulty: {question.pool ? capitalize(question.pool) : "Unknown"}</MDBCardHeader>
                 {conditionalRenderImg()}
                 <MDBCardTitle>{question.question}</MDBCardTitle>
                 <MDBCardText>
-                    <select onChange={selectChange} style={{ "background-color": answerCheck }}>{mapAnswers()}</select>
+                    <select onChange={selectChange} style={{ "backgroundColor": answerCheck }}>{mapAnswers()}</select>
                 </MDBCardText>
-                <MDBBtn>Button</MDBBtn>
+                <MDBBtn >Button</MDBBtn>
             </MDBCardBody>
         </MDBCard>
     );
