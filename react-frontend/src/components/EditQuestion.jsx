@@ -53,8 +53,8 @@ export default function EditQuestionForm(props) {
             data: editForm
         }
         axios(options)
-        .then(() => {
-            //idk
+        .then((response) => {
+            console.log(response)
         })
         .catch((error) => {
             // this.setState({ open: true, errors: error.response.data });
@@ -88,7 +88,7 @@ export default function EditQuestionForm(props) {
                     <option value="d">D</option>
                 </select>
                 <br></br>
-                <MDBBtn className="mb-6" type="submit">Submit Edits</MDBBtn>
+                <MDBBtn className="mb-6" type="submit">Update Question</MDBBtn>
                 <MDBBtn className="mb-6" onClick={removeQuestion}>DELETE Question</MDBBtn>
             </form>
         </MDBContainer>
