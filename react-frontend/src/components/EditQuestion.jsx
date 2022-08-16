@@ -9,6 +9,7 @@ export default function EditQuestionForm(props) {
     const { id } = useParams()
     const questions = props.questions
     const question = questions.find((p) => p.questionId === id)
+    console.log("question after set", question.questionId)
     const [updateDeleteAnnouncer, setUpdateDeleteAnnouncer] = useState("")
     const [editForm, setEditForm] = useState({
         pool: question.pool,
@@ -34,17 +35,20 @@ export default function EditQuestionForm(props) {
         navigate(`/question/edit/${question.questionId}`, { replace: true })
     }
 
-    const removeQuestion = () => {
+    const removeQuestion = (event) => {
+        event.preventDefault()
         axios
             .delete(`/question/${question.questionId}`)
             .then((res) => {
+                console.log("del response", res)
                 res ? setUpdateDeleteAnnouncer("Question Deleted!") : setUpdateDeleteAnnouncer("Error")
                 // window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
             });
-        setTimeout(() => { navigate("/") }, 3000)
+            
+            setTimeout(() => { navigate("/", {replace: true}) }, 2000)
     };
 
     const updateQuestion = () => {
@@ -55,7 +59,7 @@ export default function EditQuestionForm(props) {
         }
         axios(options)
             .then((response) => {
-                console.log(response)
+                console.log("res",response)
                 setUpdateDeleteAnnouncer("Question Updated!")
                 setTimeout(function () {
                     setUpdateDeleteAnnouncer("")
@@ -68,16 +72,16 @@ export default function EditQuestionForm(props) {
             });
     }
 
-    // if (hardrefresh) {() => {props.getQuestions()}}
     // useEffect(() => {
-    //     console.log("useEffect in edit")
+    //     console.log("useEffect in edit page")
     //     props.getQuestions()
-    // }, [])
+    //   }, [])
+
     return (
         <MDBContainer style={{ "maxWidth": "700px" }}>
             <form className='mb-5' onSubmit={handleSubmit}>
                 <span>
-                    <label for="difficulty">Question Difficulty: </label>
+                    <label htmlFor="difficulty">Question Difficulty: </label>
                     <select id="difficulty" style={{ "margin": "1em" }} onChange={handleChange} name="pool" label="Difficulty:">
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
@@ -92,7 +96,7 @@ export default function EditQuestionForm(props) {
                 <MDBInput wrapperClass='mb-4' name='answerChoicesC' label='Answer Choice C:' type='text' value={editForm.answerChoicesC} onChange={handleChange} />
                 <MDBInput wrapperClass='mb-4' name='answerChoicesD' label='Answer Choice D:' type='text' value={editForm.answerChoicesD} onChange={handleChange} />
                 <h4>{updateDeleteAnnouncer}</h4>
-                <label for="correct">Select the correct answer:</label>
+                <label htmlFor="correct">Select the correct answer:</label>
                 <select id="correct" style={{ "margin": "1em" }} onChange={handleChange} name="correctAnswer" label="Correct Answer:">
                     <option value="a">A</option>
                     <option value="b">B</option>

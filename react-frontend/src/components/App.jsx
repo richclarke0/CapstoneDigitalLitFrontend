@@ -63,9 +63,11 @@ const App = () => {
             } />
 
           <Route path={ROUTES.QUESTION_EDIT}
-            element={<EditQuestion
-              questions={questions}
-              getQuestions={getQuestions} />}
+            element={
+              <EditQuestion
+                questions={questions}
+                getQuestions={getQuestions}
+              />}
           />
 
           <Route path={ROUTES.QUESTION_NEW}

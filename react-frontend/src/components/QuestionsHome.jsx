@@ -37,10 +37,10 @@ const App = (props) => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log("useEffect in home")
-  //   props.getQuestions()
-  // }, [])
+  useEffect(() => {
+    console.log("useEffect in home")
+    props.getQuestions()
+  }, [])
 
   const loaded = () => {
     return (

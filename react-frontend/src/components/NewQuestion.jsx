@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom"
 
 
 export default function New() {
+    const navigate = useNavigate()
     const [newForm, setNewForm] = useState({
         pool: "easy",
         question: "",
@@ -27,6 +28,7 @@ export default function New() {
     const handleSubmit = (event) => {
         event.preventDefault()
         newQuestion()
+        navigate("/")
     }
 
     const newQuestion = () => {
