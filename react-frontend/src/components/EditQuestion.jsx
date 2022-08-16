@@ -30,7 +30,6 @@ export default function EditQuestionForm(props) {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        // props.updateQuestion(editForm, question.questionId)
         updateQuestion()
         navigate(`/question/edit/${question.questionId}`, { replace: true })
     }
