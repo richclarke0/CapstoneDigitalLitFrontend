@@ -5,7 +5,7 @@ const App = () => (
 <MDBContainer> 
   <h1>About The Developer</h1>
   <div className="row">
-    <div className="col-md-3"><img className="rounded" src="https://github.com/richclarke0/richclarke0.github.io/blob/main/img/me-sm.jpg?raw=true" alt="" style={{"maxWidth":"20vw"}}/></div>
+    <div className="col-md-3"><img className="rounded img-fluid img-thumbnail" src="https://github.com/richclarke0/richclarke0.github.io/blob/main/img/me-sm.jpg?raw=true" alt="" style={{"maxWidth":"15vw"}}/></div>
     <div className="col-md-9">
       <h3>Hi, I'm Rich. // <a href="https://dev.to/richclarke0">my dev.to blog</a> // <a href="https://github.com/richclarke0">my github</a></h3>
       <p>I'll be the first to say that this project is not my best work. It went really well at first, but I ran into a lot of issues
