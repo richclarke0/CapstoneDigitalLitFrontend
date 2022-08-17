@@ -17,9 +17,17 @@ const App = () => {
 
   const getQuestions = () => {
     axios
-      .get("/questions", {
-        responseType: "json",
-      })
+      // .get("/questions", {
+      .get("https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/questions")
+    // axios({
+    //   method: "get",
+    //   baseURL: "https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/questions",
+    //   responseType: "json",
+    //   headers: {
+    //     'Access-Control-Allow-Origin': '*',
+    //       'Content-Type': 'application/json',
+    //   }
+    // })
       .then((response) => {
         //have to store as a variable to useState
         let data = response.data

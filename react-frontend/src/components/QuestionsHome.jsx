@@ -43,6 +43,7 @@ const App = (props) => {
   }, [])
 
   const loaded = () => {
+    console.log(questions)
     if (!questions) {
       return <h1>There is no questions array.</h1>
     } else {

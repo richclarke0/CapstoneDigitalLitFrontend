@@ -33,7 +33,7 @@ export default function New() {
 
     const newQuestion = () => {
         let options = {
-            url: '/question/',
+            url: 'https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/question/',
             method: 'post',
             data: newForm
         };

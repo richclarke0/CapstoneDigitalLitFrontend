@@ -38,7 +38,7 @@ export default function EditQuestionForm(props) {
     const removeQuestion = (event) => {
         event.preventDefault()
         axios
-            .delete(`/question/${question.questionId}`)
+            .delete(`https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/question/${question.questionId}`)
             .then((res) => {
                 console.log("del response", res)
                 res ? setUpdateDeleteAnnouncer("Question Deleted!") : setUpdateDeleteAnnouncer("Error")
@@ -53,7 +53,7 @@ export default function EditQuestionForm(props) {
 
     const updateQuestion = () => {
         let options = {
-            url: `/question/${question.questionId}`,
+            url: `https://us-central1-digital-lit-richclarke0.cloudfunctions.net/api/question/${question.questionId}`,
             method: 'put',
             data: editForm
         }
