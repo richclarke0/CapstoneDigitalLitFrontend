@@ -49,7 +49,7 @@ const App = (props) => {
     } else {
       return (
         <div>
-        <button onClick={() => { console.log(props.questions) }}>console log all questions</button>
+        {/* <button onClick={() => { console.log(props.questions) }}>console log all questions</button> */}
 
         <MDBContainer>
           {renderQuestions()}
