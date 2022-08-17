@@ -43,8 +43,11 @@ const App = (props) => {
   }, [])
 
   const loaded = () => {
-    return (
-      <div>
+    if (!questions) {
+      return <h1>There is no questions array.</h1>
+    } else {
+      return (
+        <div>
         <button onClick={() => { console.log(props.questions) }}>console log all questions</button>
 
         <MDBContainer>
@@ -53,6 +56,7 @@ const App = (props) => {
         </MDBContainer>
       </div>
     )
+  }
 
   };
 
