@@ -8,12 +8,12 @@ I'll be the first to say that this project is not my best work. It went really w
 | [![Screenshot](readme_img/screenshot_thumb.png)](readme_img/screenshot.png) |  [![Wireframe](readme_img/wireframe_thumb.png)](readme_img/wireframe.png) |
 
 ## Technologies
-- Firebase
-- React
-- Axios
-- MDBootstrap
-- Node
-- Express
+- [Firebase](https://www.google.com/search?q=google+firebase)
+- [React](https://www.google.com/search?q=react+js)
+- [Axios](https://www.google.com/search?q=axios+npm)
+- [MDBootstrap](https://www.google.com/search?q=mdbootstrap+kinda+sucks)
+- [Node](https://www.google.com/search?q=node+js)
+- [Express](https://www.google.com/search?q=express+js)
 - ~~react-foundation~~ (dropped because it just wasn't that great)
 - ~~axios-hooks~~ (didn't work the way I wanted it to)Firebase
 
@@ -21,7 +21,7 @@ I'll be the first to say that this project is not my best work. It went really w
 *None*
 
 ## Future Enhancements:
-- User Authorization
+- **User Authorization**
 - Scoring
 - Administration
 - Generating random test with different difficulties
